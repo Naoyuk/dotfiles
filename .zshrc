@@ -104,15 +104,27 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(rbenv init -)"
 
+# Complement
+autoload -Uz compinit && compinit
+setopt auto_list
+setopt auto_menu
+setopt auto_cd
+
+# History setting
+HISTFILE=$HOME/.zsh-history
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt share_history
+
 # エイリアス設定
 hash -d ws=~/Documents/workspace
 hash -d dt=~/Desktop
 hash -d dl=~/Download
 
-alias dcr='docker-compose run'
-alias dcst='docker-compose stop'
-alias dcdw='docker-compose down'
-export PYENV_ROOT=/usr/local/var/pyenv
-# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-eval "$(pyenv init -)"
+alias djangos='python3 manage.py runserver'
+
+# $PATH
 export PATH=/usr/local/Cellar/vim/8.2.2250_1/bin:$PATH
+
+# postgresql data storage
+export PGDATA=/usr/local/var/postgres

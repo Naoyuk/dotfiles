@@ -7,8 +7,6 @@ set ignorecase
 set wrapscan
 " enable incremental search
 set incsearch
-" hilight all search pattern matches
-set hlsearch
 
 
 "----------------------------------------
@@ -29,11 +27,11 @@ set laststatus=2
 " 入力モードでTabキー押下時に半角スペースを挿入
 set expandtab
 " インデント幅
-set shiftwidth=4
+set shiftwidth=2
 " タブキー押下時に挿入される文字幅を指定
-set softtabstop=4
+set softtabstop=2
 " ファイル内にあるタブ文字の表示幅
-set tabstop=4
+set tabstop=2
 " 対応する括弧を強調表示
 set showmatch
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
@@ -49,9 +47,16 @@ set mouse=a
 " ビープ音を消す
 set belloff=all
 " syntax on
-syntax on
-" colour scheme
-colorscheme twilight
+set t_Co=256
+
+if has("gui_running")
+  syntax on
+  " hilight all search pattern matches
+  set hlsearch
+  " colour scheme
+  colorscheme twilight
+  " colorscheme minimalist
+endif
 
 
 "----------------------------------------
@@ -61,6 +66,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
   Plug 'tpope/vim-endwise'
   Plug 'Shougo/unite.vim'
+  Plug 'mattn/emmet-vim'
+  Plug 'nikvdp/ejs-syntax'
+  Plug 'vim-python/python-syntax'
+  Plug 'pangloss/vim-javascript'
+  Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 
 
@@ -82,3 +92,11 @@ noremap <C-N> :Unite -buffer-name=file file<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+
+"----------------------------------------
+" Vim Indent Guides
+"----------------------------------------
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
