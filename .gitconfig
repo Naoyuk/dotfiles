@@ -1,0 +1,35 @@
+[user]
+	name = Naoyuki Ishida
+	email = 39.ishida@gmail.com
+[github]
+  user   = Naoyuk
+[alias]
+  a      = add
+  ca     = commit -a
+  cam    = commit -am
+  cm     = commit -m
+  s      = status
+  ss     = status -s
+  pom    = push origin master
+  pog    = push origin gh-pages
+  puom   = pull origin master
+  puog   = pull origin gh-pages
+  cob    = checkout -b
+  co     = checkout
+  fp     = fetch --prune --all
+  l      = log --oneline --decorate --graph
+  lall   = log --oneline --decorate --graph --all
+  ls     = log --oneline --decorate --graph --stat
+  lt     = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/naoyuki/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
