@@ -117,11 +117,9 @@ export SAVEHIST=100000
 setopt share_history
 
 # エイリアス設定
-hash -d ws=~/Documents/workspace
+hash -d ws=~/workspace
 hash -d dt=~/Desktop
 hash -d dl=~/Download
-
-alias djangos='python3 manage.py runserver'
 
 # $PATH
 export PATH=/usr/local/Cellar/vim/8.2.2250_1/bin:$PATH
