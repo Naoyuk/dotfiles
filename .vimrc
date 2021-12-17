@@ -1,81 +1,93 @@
 "----------------------------------------
+" Plugin Manager(using vim-plug)
+"----------------------------------------
+call plug#begin('~/.vim/plugged')
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-rails'
+  Plug 'Shougo/unite.vim'
+  Plug 'mattn/emmet-vim'
+  Plug 'mattn/learn-vimscript'
+  Plug 'nikvdp/ejs-syntax'
+  Plug 'vim-python/python-syntax'
+  Plug 'pangloss/vim-javascript'
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  Plug 'gilgigilgil/anderson.vim'
+  Plug 'itchyny/lightline.vim'
+  Plug 'vim-jp/vimdoc-ja'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'haystackandroid/carbonized'
+call plug#end()
+
+"----------------------------------------
 " 表示設定
 "----------------------------------------
 if has('vim_starting')
-    " 挿入モード時に非点滅の縦棒タイプのカーソル
-    let &t_SI .= "\e[6 q"
-    " ノーマルモード時に非点滅のブロックタイプのカーソル
-    let &t_EI .= "\e[2 q"
-    " 置換モード時に非点滅の下線タイプのカーソル
-    let &t_SR .= "\e[4 q"
+    let &t_SI .= "\e[6 q"     " 挿入モード時に非点滅の縦棒タイプのカーソル
+    let &t_EI .= "\e[2 q"     " ノーマルモード時に非点滅のブロックタイプのカーソル
+    let &t_SR .= "\e[4 q"     " 置換モード時に非点滅の下線タイプのカーソル
 endif
-" カーソル位置の行番号
-set number
-" 相対行番号を表示
-set relativenumber
-" カーソルラインを表示
-set cursorline
-" syntax hilight
-set t_Co=256
-" syntax on
-syntax on
+set number    " カーソル位置の行番号
+set relativenumber    " 相対行番号を表示
+set cursorline    " カーソルラインを表示
+set termguicolors     " 24ビットカラーを使用する
+set t_Co=256    " 色数を256にする
+syntax on     " syntax on
 " カラースキーム
-colorscheme anderson
+colorscheme carbonized-light
+" colorscheme anderson
 " colorscheme twilight
 " colorscheme minimalist
+" let ayucolor="light"
+" colorscheme ayu
 
 "----------------------------------------
 " 検索
 "----------------------------------------
-" 大文字小文字を無視
-set ignorecase
-" 最後までいったら最初に戻る
-set wrapscan
-" 検索文字を入力するたびに検索結果を更新する
-set incsearch
-" マッチした全てをハイライトする
-set hlsearch
+set ignorecase    " 大文字小文字を無視
+set smartcase     " 大文字で検索したら大文字小文字を区別する
+set wrapscan    " 最後までいったら最初に戻る
+set incsearch     " 検索文字を入力するたびに検索結果を更新する
+set hlsearch    " マッチした全てをハイライトする
+
+"----------------------------------------
+" インデント
+"----------------------------------------
+set smartindent     " インデントを考慮して改行
+set shiftwidth=2    " インデント幅
 
 "----------------------------------------
 " その他
 "----------------------------------------
-" インサートモードの時にバックスペースでdelete
-set backspace=2
-" 入力モードでTabキー押下時に半角スペースを挿入
-set expandtab
-" インデント幅
-set shiftwidth=2
-" タブキー押下時に挿入される文字幅を指定
-set softtabstop=2
-" ファイル内にあるタブ文字の表示幅
-set tabstop=2
-" 対応する括弧を強調表示
-set showmatch
-" 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
-set smartindent
-" ヤンクでクリップボードにコピー
-set clipboard=unnamed,autoselect
-" set clipboard+=unnamed
-" バッファスクロール
-set mouse=a
-" ビープ音を消す
-set belloff=all
+set backspace=2     " インサートモードの時にバックスペースでdelete
+set expandtab     " 入力モードでTabキー押下時に半角スペースを挿入
+set softtabstop=2     " タブキー押下時に挿入される文字幅を指定
+set tabstop=2     " ファイル内にあるタブ文字の表示幅
+set showmatch     " 対応する括弧を強調表示
+set smartindent     " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+set clipboard+=unnamed    " 無名レジスタとクリップボードレジスタを同期させ、ヤンクしたらクリップボードにも入る
+set mouse=a     " バッファスクロール
+set belloff=all     " ビープ音を消す
 " ファイルを開き直してもアンドゥの履歴が残ってるようにする
 if has('persistent_undo')
 	let undo_path = expand('~/.vim/undo')
-	exe 'set undodir=' .. undo_path
+  if !isdirectory(undo_path)
+    call mkdir(undo_path, 'p')
+  endif
+  let &undodir = undo_path
 	set undofile
 endif
-" コマンドライン補完
-set wildmenu
-" swpファイルを作らない
-set noswapfile
+set undolevels=1000     " undoできる最大回数を1000回にする
+set wildmenu    " コマンドライン補完
+set noswapfile    " swpファイルを作らない
+set virtualedit=block     " テキストがないところまで矩形選択できるようにする
+set helplang=ja,en    " ヘルプ日本語化
 
 "----------------------------------------
 " ステータスライン
 "----------------------------------------
-" ステータスライン表示
-set laststatus=2
+set laststatus=2    " ステータスライン表示
 " lightline.vimのカラースキーム
 let g:lightline = {
         \ 'colorscheme': 'wombat',
@@ -139,51 +151,23 @@ endfunction
 "----------------------------------------
 " キーマップ
 "----------------------------------------
-" Escの2回押しでハイライト消去
-nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
-" <Leader>というプレフィックスキーにスペースを使用する
-let g:mapleader = "\<Space>"
-" スペース + . でvimrcを開く
-nnoremap <Leader>. :new ~/.vimrc<CR>
-" Ctrl + j と Ctrl + k で 段落の前後に移動
-nnoremap <C-j> }
-nnoremap <C-k> {
-
-"----------------------------------------
-" Plugin Manager(using vim-plug)
-"----------------------------------------
-call plug#begin('~/.vim/plugged')
-  Plug 'preservim/nerdtree'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-rails'
-  Plug 'Shougo/unite.vim'
-  Plug 'mattn/emmet-vim'
-  Plug 'mattn/learn-vimscript'
-  Plug 'nikvdp/ejs-syntax'
-  Plug 'vim-python/python-syntax'
-  Plug 'pangloss/vim-javascript'
-  Plug 'MaxMEllon/vim-jsx-pretty'
-  Plug 'gilgigilgil/anderson.vim'
-  Plug 'itchyny/lightline.vim'
-  Plug 'vim-jp/vimdoc-ja'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-call plug#end()
-
-"----------------------------------------
-" NERDTree
-"----------------------------------------
-nnoremap <silent><C-t> :NERDTreeToggle<CR>
+nnoremap <Esc><Esc> :nohlsearch<CR><ESC>    " Escの2回押しでハイライト消去
+let g:mapleader = "\<Space>"    " <Leader>というプレフィックスキーにスペースを使用する
+nnoremap <Leader>. :tabnew ~/.vimrc<CR>     " スペース + . でvimrcを開く
+nnoremap <C-j> }    " Ctrl + j で 段落の後に移動
+nnoremap <C-k> {    " Ctrl + k で 段落の前に移動
+nnoremap H ^    " 行頭への移動
+nnoremap L $    " 行末への移動 
+nnoremap <C-s>\ :vert term ++close    " ターミナルを垂直で開く
+nnoremap <C-s>- :bo term ++close    " ターミナルを水平で開く
+nnoremap <C-s>^ :tab term ++close     " ターミナルを新しいタブページで開く
 
 "----------------------------------------
 " Unite.vim
 "----------------------------------------
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
+let g:unite_enable_start_insert=1     " 入力モードで開始する
+noremap <C-P> :Unite buffer<CR>     " バッファ一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>     " ファイル一覧
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -195,7 +179,3 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 
-"----------------------------------------
-" ヘルプ日本語化
-"----------------------------------------
-set helplang=ja,en
