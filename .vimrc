@@ -1,24 +1,48 @@
 "----------------------------------------
-" Plugin Manager(using vim-plug)
+" Plugin Manager(using dein.vim)
 "----------------------------------------
-call plug#begin('~/.vim/plugged')
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-rails'
-  Plug 'Shougo/unite.vim'
-  Plug 'mattn/emmet-vim'
-  Plug 'mattn/learn-vimscript'
-  Plug 'nikvdp/ejs-syntax'
-  Plug 'vim-python/python-syntax'
-  Plug 'pangloss/vim-javascript'
-  Plug 'MaxMEllon/vim-jsx-pretty'
-  Plug 'gilgigilgil/anderson.vim'
-  Plug 'itchyny/lightline.vim'
-  Plug 'vim-jp/vimdoc-ja'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'ayu-theme/ayu-vim'
-  Plug 'haystackandroid/carbonized'
-call plug#end()
+" インストールディレクトリの設定
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vimをインストールしているかのチェック。してなければする。
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+
+" dein.vimの設定
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+
+    " .toml file
+    let s:rc_dir = expand('~/.vim')
+    if !isdirectory(s:rc_dir)
+        call mkdir(s:rc_dir, 'p')
+    endif
+    let s:toml = s:rc_dir . '/dein.toml'
+
+    " read toml and cache
+    call dein#load_toml(s:toml, {'lazy': 0})
+
+    " end settings
+    call dein#end()
+    call dein#save_state()
+endif
+
+" プラグインのインストールチェック
+if dein#check_install()
+    call dein#install()
+endif
+
+" プラグインのアンインストールチェック
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+    call map(s:removed_plugins, "delete(v:val, 'rf')")
+    call dein#recache_runtimepath()
+endif
 
 "----------------------------------------
 " 表示設定
@@ -39,8 +63,6 @@ colorscheme carbonized-light
 " colorscheme anderson
 " colorscheme twilight
 " colorscheme minimalist
-" let ayucolor="light"
-" colorscheme ayu
 
 "----------------------------------------
 " 検索
@@ -161,16 +183,6 @@ nnoremap L $    " 行末への移動
 nnoremap <C-s>\ :vert term ++close    " ターミナルを垂直で開く
 nnoremap <C-s>- :bo term ++close    " ターミナルを水平で開く
 nnoremap <C-s>^ :tab term ++close     " ターミナルを新しいタブページで開く
-
-"----------------------------------------
-" Unite.vim
-"----------------------------------------
-let g:unite_enable_start_insert=1     " 入力モードで開始する
-noremap <C-P> :Unite buffer<CR>     " バッファ一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>     " ファイル一覧
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 "----------------------------------------
 " Vim Indent Guides
