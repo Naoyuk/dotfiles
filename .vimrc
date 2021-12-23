@@ -175,14 +175,9 @@ endfunction
 "----------------------------------------
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>    " Escの2回押しでハイライト消去
 let g:mapleader = "\<Space>"    " <Leader>というプレフィックスキーにスペースを使用する
-nnoremap <Leader>. :tabnew ~/.vimrc<CR>     " スペース + . でvimrcを開く
-nnoremap <C-j> }    " Ctrl + j で 段落の後に移動
-nnoremap <C-k> {    " Ctrl + k で 段落の前に移動
-nnoremap H ^    " 行頭への移動
-nnoremap L $    " 行末への移動 
-nnoremap <C-s>\ :vert term ++close    " ターミナルを垂直で開く
-nnoremap <C-s>- :bo term ++close    " ターミナルを水平で開く
-nnoremap <C-s>^ :tab term ++close     " ターミナルを新しいタブページで開く
+nnoremap <Leader>. :tabnew ~/.vimrc<CR> :vs<CR><C-w>l :e ~/.vim/dein.toml<CR> :sp<CR><C-w>j :e ~/.vim/dein_lazy.toml<CR><C-w>h " スペース + . でvimrc(init.vim)とdein.tomlとdein_lazy.tomlをウインドウ分割して開く
+nnoremap <Leader>se :SaveSession
+nnoremap <Leader>lse :FloadSession<CR>
 
 "----------------------------------------
 " Vim Indent Guides
@@ -191,3 +186,32 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 
+"----------------------------------------
+" セッション
+"----------------------------------------
+let s:session_path = expand('~/.vim/sessions')
+
+if !isdirectory(s:session_path)
+  call mkdir(s:session_path, "p")
+endif
+
+" セッションの保存
+" ファイル名が同じ場合は上書きされる
+command! -nargs=1 SaveSession call s:saveSession(<f-args>)
+function! s:saveSession(file)
+  execute 'silent mksession!' s:session_path . '/' . a:file
+endfunction
+
+" セッションの復元
+" :LoadSession ~/.vim/sessions/test1.vim という感じで読み込む
+command! FloadSession call fzf#run({
+      \  'source':  split(glob(s:session_path, "/*"), "\n"),
+      \  'sink':    function('s:loadSession'),
+      \  'options': '-m -x +s',
+      \  'down':    '40%'})
+
+command! FdeleteSession call fzf#run({
+      \  'source':  split(glob(s:session_path . "/*"), "\n"),
+      \  'sink':    function('s:deleteSession'),
+      \  'options': '-m -x +s',
+      \  'down':    '40%'})
