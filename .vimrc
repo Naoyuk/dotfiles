@@ -1,48 +1,27 @@
 "----------------------------------------
-" Plugin Manager(using dein.vim)
+" Plugin Manager(using vim-plug)
 "----------------------------------------
-" インストールディレクトリの設定
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" dein.vimをインストールしているかのチェック。してなければする。
-if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-    endif
-    execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-
-" dein.vimの設定
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
-
-    " .toml file
-    let s:rc_dir = expand('~/.vim')
-    if !isdirectory(s:rc_dir)
-        call mkdir(s:rc_dir, 'p')
-    endif
-    let s:toml = s:rc_dir . '/dein.toml'
-
-    " read toml and cache
-    call dein#load_toml(s:toml, {'lazy': 0})
-
-    " end settings
-    call dein#end()
-    call dein#save_state()
-endif
-
-" プラグインのインストールチェック
-if dein#check_install()
-    call dein#install()
-endif
-
-" プラグインのアンインストールチェック
-let s:removed_plugins = dein#check_clean()
-if len(s:removed_plugins) > 0
-    call map(s:removed_plugins, "delete(v:val, 'rf')")
-    call dein#recache_runtimepath()
-endif
+call plug#begin('~/.vim/plugged')
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-rails'
+  Plug 'mattn/emmet-vim'
+  Plug 'mattn/learn-vimscript'
+  Plug 'nikvdp/ejs-syntax'
+  Plug 'vim-python/python-syntax'
+  Plug 'pangloss/vim-javascript'
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  Plug 'gilgigilgil/anderson.vim'
+  Plug 'itchyny/lightline.vim'
+  Plug 'vim-jp/vimdoc-ja'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'haystackandroid/carbonized'
+  Plug 'rakr/vim-two-firewatch'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'jremmen/vim-ripgrep'
+  Plug 'sainnhe/edge'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
 "----------------------------------------
 " 表示設定
@@ -59,10 +38,16 @@ set termguicolors     " 24ビットカラーを使用する
 set t_Co=256    " 色数を256にする
 syntax on     " syntax on
 " カラースキーム
-colorscheme carbonized-light
+" colorscheme carbonized-light
 " colorscheme anderson
+" colorscheme solarized
 " colorscheme twilight
 " colorscheme minimalist
+" colorscheme two-firewatch
+colorscheme edge
+" set background=dark " or light
+" let g:two_firewatch_italics=1
+" colo two-firewatch
 
 "----------------------------------------
 " 検索
@@ -178,6 +163,10 @@ let g:mapleader = "\<Space>"    " <Leader>というプレフィックスキー�
 nnoremap <Leader>. :tabnew ~/.vimrc<CR> :vs<CR><C-w>l :e ~/.vim/dein.toml<CR> :sp<CR><C-w>j :e ~/.vim/dein_lazy.toml<CR><C-w>h " スペース + . でvimrc(init.vim)とdein.tomlとdein_lazy.tomlをウインドウ分割して開く
 nnoremap <Leader>se :SaveSession
 nnoremap <Leader>lse :FloadSession<CR>
+nnoremap <Leader>f :<C-u>Files<CR>
+nnoremap <Leader>b :<C-u>Buffers<CR>
+nnoremap <Leader>h :<C-u>History<CR>
+nnoremap <Leader>r :<C-u>Rg 
 
 "----------------------------------------
 " Vim Indent Guides
