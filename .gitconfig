@@ -4,29 +4,29 @@
 [github]
   user   = Naoyuk
 [alias]
-  a      = add
-  ca     = commit -a
-  cam    = commit -am
+  a      = !git add -A && git status
+  cam    = commit --amend
+  cancel = reset --soft HEAD^
   cm     = commit -m
   s      = status
-  ss     = status -s
-  pom    = push origin master
+  pom    = push origin main
   pog    = push origin gh-pages
-  puom   = pull origin master
+  puom   = pull origin main
   puog   = pull origin gh-pages
   cob    = checkout -b
   co     = checkout
-  fp     = fetch --prune --all
   l      = log --oneline --decorate --graph
   lall   = log --oneline --decorate --graph --all
   ls     = log --oneline --decorate --graph --stat
   lt     = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+  wip    = commit -m 'wip'
 [color]
 	ui = auto
 [init]
 	defaultBranch = main
 [core]
 	excludesfile = /Users/naoyuki/.gitignore_global
+  editor = nvim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -37,3 +37,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[commit]
+	template = /Users/naoyuki/.stCommitMsg
