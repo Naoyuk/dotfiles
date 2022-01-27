@@ -168,7 +168,6 @@ nnoremap <Leader>b :<C-u>Buffers<CR>
 nnoremap <Leader>h :<C-u>History<CR>
 nnoremap <Leader>r :<C-u>Rg 
 nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
-autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <C-g>
 nnoremap <Leader>n :tabnew ~/notes_2022.md<CR>
 
 "----------------------------------------
@@ -212,6 +211,7 @@ command! FdeleteSession call fzf#run({
 " ターミナルモード
 "----------------------------------------
 if has('nvim')
-  " <C-[>でノーマルモードに切り替え
+  " <ESC>でノーマルモードに切り替え
   tnoremap <ESC> <C-\><C-n>
+  autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <C-g>
 endif
