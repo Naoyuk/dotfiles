@@ -43,8 +43,8 @@ syntax on     " syntax on
 " colorscheme solarized
 " colorscheme twilight
 " colorscheme minimalist
-" colorscheme two-firewatch
-colorscheme edge
+colorscheme two-firewatch
+" colorscheme edge
 " set background=dark " or light
 " let g:two_firewatch_italics=1
 " colo two-firewatch
@@ -167,6 +167,9 @@ nnoremap <Leader>f :<C-u>Files<CR>
 nnoremap <Leader>b :<C-u>Buffers<CR>
 nnoremap <Leader>h :<C-u>History<CR>
 nnoremap <Leader>r :<C-u>Rg 
+nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
+autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <C-g>
+nnoremap <Leader>n :tabnew ~/notes_2022.md<CR>
 
 "----------------------------------------
 " Vim Indent Guides
@@ -204,3 +207,11 @@ command! FdeleteSession call fzf#run({
       \  'sink':    function('s:deleteSession'),
       \  'options': '-m -x +s',
       \  'down':    '40%'})
+
+"----------------------------------------
+" ターミナルモード
+"----------------------------------------
+if has('nvim')
+  " <C-[>でノーマルモードに切り替え
+  tnoremap <ESC> <C-\><C-n>
+endif
