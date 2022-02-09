@@ -90,6 +90,8 @@ set wildmenu    " コマンドライン補完
 set noswapfile    " swpファイルを作らない
 set virtualedit=block     " テキストがないところまで矩形選択できるようにする
 set helplang=ja,en    " ヘルプ日本語化
+set colorcolumn=80
+highlight ColorColumn guibg=#202020 ctermbg=lightgray
 
 "----------------------------------------
 " ステータスライン
