@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jremmen/vim-ripgrep'
   Plug 'sainnhe/edge'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'thinca/vim-quickrun'
 call plug#end()
 
 "----------------------------------------
@@ -171,6 +172,7 @@ nnoremap <Leader>h :<C-u>History<CR>
 nnoremap <Leader>r :<C-u>Rg 
 nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
 nnoremap <Leader>n :tabnew ~/notes_2022.md<CR>
+nnoremap <Leader>r :QuickRun<CR><C-w>hG
 
 "----------------------------------------
 " Vim Indent Guides
