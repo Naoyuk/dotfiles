@@ -86,7 +86,7 @@ if has('persistent_undo')
   let &undodir = undo_path
 	set undofile
 endif
-set undolevels=1000     " undoできる最大回数を1000回にする
+set undolevels=100000     " undoできる最大回数を100000回にする
 set wildmenu    " コマンドライン補完
 set noswapfile    " swpファイルを作らない
 set virtualedit=block     " テキストがないところまで矩形選択できるようにする
