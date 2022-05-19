@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'sainnhe/edge'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'thinca/vim-quickrun'
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 "----------------------------------------
@@ -219,3 +221,8 @@ if has('nvim')
   tnoremap <ESC> <C-\><C-n>
   autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <C-g>
 endif
+
+"----------------------------------------
+" Vim Markdown
+"----------------------------------------
+let g:vim_markdown_toc_autfit = 1
