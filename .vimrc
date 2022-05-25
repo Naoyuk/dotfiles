@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-quickrun'
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
 
 "----------------------------------------
@@ -175,6 +176,7 @@ nnoremap <Leader>r :<C-u>Rg
 nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
 nnoremap <Leader>n :tabnew ~/notes_2022.md<CR>
 nnoremap <Leader>r :QuickRun<CR><C-w>hG
+nnoremap <Leader>m :MarkdownPreview<CR>
 
 "----------------------------------------
 " Vim Indent Guides
