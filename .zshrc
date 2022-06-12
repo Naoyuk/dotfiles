@@ -40,7 +40,10 @@ PROMPT='
 %F{blue}%c:%F{cyan}$vcs_info_msg_0_%f %F{yellow}$%f '
 
 # $PATH
-export PATH=/usr/local/Cellar/vim/8.2.2250_1/bin:$PATH
+# export PATH=/usr/local/Cellar/vim/8.2.2250_1/bin:$PATH
+
+# Python3.10 PATH
+export PATH=/opt/homebrew/Cellar/python@3.10//3.10.4/bin:$PATH
 
 # rbenv PATH
 export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
