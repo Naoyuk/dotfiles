@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+  Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 "----------------------------------------

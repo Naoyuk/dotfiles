@@ -25,6 +25,10 @@ setopt hist_ignore_dups
 # 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
 
+# エイリアス
+alias runs='python manage.py runserver'
+alias g='git'
+
 # git
 autoload -Uz vcs_info
 setopt prompt_subst
