@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
   Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'chrisbra/csv.vim'
 call plug#end()
 
 "----------------------------------------
@@ -178,6 +179,7 @@ nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
 nnoremap <Leader>n :tabnew ~/notes_2022.md<CR>
 nnoremap <Leader>r :QuickRun<CR><C-w>hG
 nnoremap <Leader>m :MarkdownPreview<CR>
+nnoremap <Leader>0 :tabnew ~/faq.md<CR>
 
 "----------------------------------------
 " Vim Indent Guides
