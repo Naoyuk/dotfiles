@@ -28,6 +28,8 @@ setopt hist_ignore_all_dups
 # エイリアス
 alias runs='python manage.py runserver'
 alias g='git'
+alias dk='docker'
+alias d-c='docker-compose'
 
 # git
 autoload -Uz vcs_info
@@ -62,12 +64,15 @@ export PATH=$PATH:$HOME/go/bin
 # XDG configurationのHome Path
 export XDG_CONFIG_HOME=$HOME/.config
 
+# Deno PATH
+export PATH=$PATH:$HOME/.deno/bin
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # typescript PATH
 export PATH=/Users/naoyuki/lerning/typescript/node_modules/.bin:$PATH
 
 # execute tmux only boot the terminal
-if [ $SHLVL = 1 ]; then
-  tmux
-fi
+# if [ $SHLVL = 1 ]; then
+#   tmux
+# fi
