@@ -178,10 +178,10 @@ nnoremap <Leader>b :<C-u>Buffers<CR>
 nnoremap <Leader>h :<C-u>History<CR>
 nnoremap <Leader>r :<C-u>Rg 
 nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
-nnoremap <Leader>n :tabnew ~/notes_2022.md<CR>
+nnoremap <Leader>n :tabnew ~/Documents/note/notes_2023.md<CR>
 nnoremap <Leader>r :QuickRun<CR><C-w>hG
 nnoremap <Leader>m :MarkdownPreview<CR>
-nnoremap <Leader>0 :tabnew ~/faq.md<CR>
+nnoremap <Leader>0 :tabnew ~/Documents/note/faq.md<CR>
 
 "----------------------------------------
 " Vim Indent Guides
