@@ -23,10 +23,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'thinca/vim-quickrun'
   Plug 'godlygeek/tabular'
-  Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'chrisbra/csv.vim'
+  Plug 'vim-denops/denops.vim'
+  Plug 'lambdalisue/gin.vim'
 call plug#end()
 
 "----------------------------------------
@@ -49,7 +50,8 @@ syntax on     " syntax on
 " colorscheme solarized
 " colorscheme twilight
 " colorscheme minimalist
-colorscheme two-firewatch
+" colorscheme two-firewatch
+colorscheme habamax
 " colorscheme edge
 " set background=dark " or light
 " let g:two_firewatch_italics=1
@@ -100,17 +102,17 @@ set colorcolumn=80
 highlight ColorColumn guibg=#202020 ctermbg=lightgray
 
 "----------------------------------------
-" ステータスライン
+" ステータスライン(lightline)
 "----------------------------------------
 set laststatus=2    " ステータスライン表示
-" lightline.vimのカラースキーム
 let g:lightline = {
         \ 'colorscheme': 'wombat',
-        \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
         \ },
         \ 'component_function': {
+        \   'gitbranch': 'LightlineBranch',
         \   'modified': 'LightlineModified',
         \   'readonly': 'LightlineReadonly',
         \   'fugitive': 'LightlineFugitive',
@@ -119,7 +121,7 @@ let g:lightline = {
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding',
         \   'mode': 'LightlineMode'
-        \ }
+        \ },
         \ }
 
 function! LightlineModified()
@@ -168,7 +170,7 @@ endfunction
 "----------------------------------------
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>    " Escの2回押しでハイライト消去
 let g:mapleader = "\<Space>"    " <Leader>というプレフィックスキーにスペースを使用する
-nnoremap <Leader>. :tabnew ~/.vimrc<CR> :vs<CR><C-w>l :e ~/.vim/dein.toml<CR> :sp<CR><C-w>j :e ~/.vim/dein_lazy.toml<CR><C-w>h " スペース + . でvimrc(init.vim)とdein.tomlとdein_lazy.tomlをウインドウ分割して開く
+nnoremap <Leader>. :tabnew ~/.vimrc<CR>     " スペース + . でvimrc(init.vim)を開く
 nnoremap <Leader>se :SaveSession
 nnoremap <Leader>lse :FloadSession<CR>
 nnoremap <Leader>f :<C-u>Files<CR>
