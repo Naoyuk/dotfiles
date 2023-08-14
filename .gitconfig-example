@@ -1,0 +1,36 @@
+[user]
+	name = Naoyuki Ishida
+	email = 39.ishida@gmail.com
+[github]
+  user   = Naoyuk
+[alias]
+  a      = !git add -A && git status
+  b      = branch
+  bm     = branch --merged
+  cam    = commit --amend
+  cancel = reset --soft HEAD^
+  cm     = commit -m
+  s      = status
+  l      = log --oneline --decorate --graph
+  lall   = log --oneline --decorate --graph --all
+  ls     = log --oneline --decorate --graph --stat
+  lt     = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+  sw     = switch
+  sc     = switch -c
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
+[core]
+    editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[pull]
+	rebase = false
+[grep]
+	lineNumber = true
+[merge]
+	ff = false
+

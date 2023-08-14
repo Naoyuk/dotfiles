@@ -72,6 +72,11 @@ export PATH=$PATH:$HOME/.deno/bin
 # typescript PATH
 export PATH=/Users/naoyuki/lerning/typescript/node_modules/.bin:$PATH
 
+# Android SDK PATH
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
 # execute tmux only boot the terminal
 # if [ $SHLVL = 1 ]; then
 #   tmux
