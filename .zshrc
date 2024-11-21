@@ -30,6 +30,7 @@ alias runs='python manage.py runserver'
 alias g='git'
 alias dk='docker'
 alias d-c='docker-compose'
+alias ls='ls --color'
 
 # git
 autoload -Uz vcs_info
@@ -67,7 +68,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 # Deno PATH
 export PATH=$PATH:$HOME/.deno/bin
 
+# Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /opt/homebrew/Cellar/fzf/0.56.3/shell/key-bindings.zsh
+source /opt/homebrew/Cellar/fzf/0.56.3/shell/completion.zsh
 
 # typescript PATH
 export PATH=/Users/naoyuki/lerning/typescript/node_modules/.bin:$PATH
