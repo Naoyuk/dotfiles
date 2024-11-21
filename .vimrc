@@ -10,16 +10,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-python/python-syntax'
   Plug 'pangloss/vim-javascript'
   Plug 'MaxMEllon/vim-jsx-pretty'
-  Plug 'gilgigilgil/anderson.vim'
   Plug 'itchyny/lightline.vim'
-  Plug 'vim-jp/vimdoc-ja'
-  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'haystackandroid/carbonized'
-  Plug 'rakr/vim-two-firewatch'
-  Plug 'altercation/vim-colors-solarized'
   Plug 'jremmen/vim-ripgrep'
-  Plug 'sainnhe/edge'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'thinca/vim-quickrun'
   Plug 'godlygeek/tabular'
@@ -28,6 +22,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'chrisbra/csv.vim'
   Plug 'vim-denops/denops.vim'
   Plug 'lambdalisue/gin.vim'
+  Plug 'lambdalisue/fern.vim'
 call plug#end()
 
 "----------------------------------------
@@ -100,6 +95,11 @@ set virtualedit=block     " テキストがないところまで矩形選択で�
 set helplang=ja,en    " ヘルプ日本語化
 set colorcolumn=80
 highlight ColorColumn guibg=#202020 ctermbg=lightgray
+
+"----------------------------------------
+" Fern
+"----------------------------------------
+let g:fern#default_hidden=1     " 隠しファイルを表示する
 
 "----------------------------------------
 " ステータスライン(lightline)
@@ -177,7 +177,8 @@ nnoremap <Leader>f :<C-u>Files<CR>
 nnoremap <Leader>b :<C-u>Buffers<CR>
 nnoremap <Leader>h :<C-u>History<CR>
 nnoremap <Leader>r :<C-u>Rg 
-nnoremap <Leader>e <Cmd>CocCommand explorer<CR>
+nnoremap <Leader>e :Fern . -reveal=%<CR>
+nnoremap <Leader>d :Fern . -drawer -toggle -reveal=%<CR>
 nnoremap <Leader>n :tabnew ~/Documents/note/notes_2023.md<CR>
 nnoremap <Leader>r :QuickRun<CR><C-w>hG
 nnoremap <Leader>m :MarkdownPreview<CR>
