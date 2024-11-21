@@ -116,7 +116,7 @@ return {
     -- General appearance
     color_scheme = 'Chalk',
     font = wezterm.font 'Comic Code',
-    font_size = 14.0,
+    font_size = 16.0,
     window_background_gradient = {
       orientation = 'Vertical',
       colors = {
