@@ -81,6 +81,13 @@ set smartindent     " 改行時に入力された行の末尾に合わせて次�
 set clipboard+=unnamed    " 無名レジスタとクリップボードレジスタを同期させ、ヤンクしたらクリップボードにも入る
 set mouse=a     " バッファスクロール
 set belloff=all     " ビープ音を消す
+" Neovim用のundoディレクトリを設定
+if has('nvim')
+  set undodir=~/.neovim/undo
+" Vim用のundoディレクトリを設定
+elseif has('vim')
+  set undodir=~/.vim/undo
+endif
 " ファイルを開き直してもアンドゥの履歴が残ってるようにする
 if has('persistent_undo')
 	let undo_path = expand('~/.vim/undo')
