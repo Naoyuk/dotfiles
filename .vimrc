@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/gin.vim'
   Plug 'lambdalisue/fern.vim'
   Plug 'github/copilot.vim'
+  Plug 'sindrets/diffview.nvim'
 call plug#end()
 
 "----------------------------------------
@@ -184,6 +185,7 @@ nnoremap <Leader>n :tabnew ~/Documents/note/notes_2023.md<CR>
 nnoremap <Leader>r :QuickRun<CR><C-w>hG
 nnoremap <Leader>m :MarkdownPreview<CR>
 nnoremap <Leader>0 :tabnew ~/Documents/note/faq.md<CR>
+nnoremap <Leader>gd :<C-u>DiffviewOpen HEAD~1<CR>
 
 "----------------------------------------
 " Vim Indent Guides
