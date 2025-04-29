@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-denops/denops.vim'
   Plug 'lambdalisue/gin.vim'
   Plug 'lambdalisue/fern.vim'
+  Plug 'github/copilot.vim'
 call plug#end()
 
 "----------------------------------------
