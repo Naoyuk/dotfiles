@@ -70,8 +70,8 @@ export PATH=$PATH:$HOME/.deno/bin
 
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /opt/homebrew/Cellar/fzf/0.56.3/shell/key-bindings.zsh
-source /opt/homebrew/Cellar/fzf/0.56.3/shell/completion.zsh
+source /opt/homebrew/Cellar/fzf/0.60.3/shell/key-bindings.zsh
+source /opt/homebrew/Cellar/fzf/0.60.3/shell/completion.zsh
 
 # typescript PATH
 export PATH=/Users/naoyuki/lerning/typescript/node_modules/.bin:$PATH
