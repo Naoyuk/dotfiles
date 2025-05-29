@@ -113,12 +113,25 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
+# Git completion
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    source /usr/share/bash-completion/completions/git
+fi
+
+# Enable programmable completion features
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+# gitエイリアス用の補完設定
+if [ -f ~/.git-completion.bash ]; then
+    source ~/.git-completion.bash
+    # gエイリアスにもgit補完を適用
+    __git_complete g __git_main
 fi
 
 # Added by `rbenv init` on Mon Apr 28 15:29:35 PDT 2025
