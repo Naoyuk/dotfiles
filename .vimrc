@@ -79,6 +79,7 @@ set tabstop=4     " ファイル内にあるタブ文字の表示幅
 set showmatch     " 対応する括弧を強調表示
 set smartindent     " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set clipboard+=unnamed    " 無名レジスタとクリップボードレジスタを同期させ、ヤンクしたらクリップボードにも入る
+set clipboard=unnamedplus
 set mouse=a     " バッファスクロール
 set belloff=all     " ビープ音を消す
 " Neovim用のundoディレクトリを設定
