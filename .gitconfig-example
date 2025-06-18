@@ -17,6 +17,8 @@
   lt     = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
   sw     = switch
   sc     = switch -c
+	co = checkout
+	cb = checkout -b
 [color]
 	ui = auto
 [init]

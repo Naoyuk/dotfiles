@@ -139,6 +139,7 @@ eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
 
 # Additinal PATH
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
 
 # GitPrompt
 source ~/.git-prompt.sh
